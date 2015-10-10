@@ -16,8 +16,8 @@ install:
 - gem install rake
 - gem install cddl
 script: 
-- xml2rfc draft-ietf-cose-msg.xml -o cose.xml --exp
-- rake verify
+- xml2rfc draft-ietf-cose-alg.xml -o cose.xml --exp
+# - rake verify
 - make ghpages
 env:
   global:

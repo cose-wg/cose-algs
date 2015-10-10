@@ -30,6 +30,7 @@
   <!ENTITY RFC7539 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7539.xml" >
 
   <!ENTITY CDDL SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.greevenbosch-appsawg-cbor-cddl.xml" >
+  <!ENTITY COSE SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-cose-msg.xml" >
   <!ENTITY CBCMAC SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.mcgrew-aead-aes-cbc-hmac-sha2.xml" >
   <!ENTITY CFRG-EC SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.irtf-cfrg-curves.xml" >
 
@@ -87,10 +88,10 @@
   <middle>
 
     <section anchor="introduction" title="Introduction">
-      <td>TBD</td>
-        
-
-
+      <t>
+        In the process of writing RFCXXXX <xref target="I-D.ietf-cose-msg"/> several items were removed from that ocument to be addressed at a later date.
+        This document was created to address those items.
+      </t>
       
       <section anchor="requirements-terminology" title="Requirements Terminology">
         <!--  NOTE FOR AUTHORS:
@@ -1299,7 +1300,7 @@ COSE_KDF_Context = [
         <t>
           The 'direct key agreement' class of recipient algorithms uses a key agreement method to create a shared secret.
           A KDF is then applied to the shared secret to derive a key to be used in protecting the data.
-          This key is normally used as a CEK or MAC key, but could be used for other purposes if more than two layers are in use (see <xref target="three-layer"/>).
+          This key is normally used as a CEK or MAC key, but could be used for other purposes if more than two layers are in use (see [THREE-LAYER] <!-- <xref target="three-layer"/> -->).
         </t>
 
         <t>
@@ -1810,65 +1811,7 @@ COSE_KDF_Context = [
       <section anchor="cose-header-key-table" title="COSE Header Parameter Registry">
 
         <t>
-          It is requested that IANA create a new registry entitled “COSE Header Parameters”.
-        </t>
-
-        <t>
-          The columns of the registry are:
-
-          <list style="hanging">
-            
-            <t hangText='name'>
-              The name is present to make it easier to refer to and discuss the registration entry. 
-              The value is not used in the protocol. 
-              Names are to be unique in the table.
-            </t>
-            
-            <t hangText='label'>
-              This is the value used for the label.
-              The label can be either an integer or a string.
-              Registration in the table is based on the value of the label requested.
-              <!-- these are 1 and 2 byte items -->
-              Integer values between 1 and 255 and strings of length 1 are designated as Standards Track Document required.
-
-              <!-- These are 3 byte items -->
-              Integer values from 256 to 65535 and strings of length 2 are designated as Specification Required.
-
-              <!-- These are >= 5 byte items -->
-              Integer values of greater than 65535 and strings of length greater than 2 are designated as first come first server.
-
-              <!-- These are 1, 2 and 3 byte items -->
-              Integer values in the range -1 to -65536 are delegated to the “COSE Header Algorithm Label” registry.
-
-              <!-- These are >= 5 byte items -->
-              Integer values beyond -65536 are marked as private use.
-            </t>
-
-            <t hangText='value'>
-              This contains the CBOR type for the value portion of the label.
-            </t>
-
-            <t hangText='value registry'>
-              This contains a pointer to the registry used to contain values where the set is limited.
-            </t>
-
-            <t hangText='description'>
-              This contains a brief description of the header field.
-            </t>
-
-            <t hangText='specification'>
-              This contains a pointer to the specification defining the header field (where public).
-            </t>
-          </list>
-        </t>
-
-        <t>
-          The initial contents of the registry can be found in <xref target="Header-Table"/>.
-          The specification column for all rows in that table should be this document.
-        </t>
-
-        <t>
-          Additionally, the label of 0 is to be marked as 'Reserved'.
+          There are currently no registration requests here
         </t>
 
       </section>
@@ -1963,46 +1906,7 @@ COSE_KDF_Context = [
       <section anchor="cose-key-map-registry" title="COSE Key Common Parameter Registry">
 
         <t>
-          It is requested that IANA create a new registry entitled “COSE Key Common Parameter" Registry.
-        </t>
-
-        <t>
-          The columns of the registry are:
-        </t>
-
-        <t>
-          <list style="hanging">
-            <t hangText='name'>
-              This is a descriptive name that enables easier reference to the item.  It is not used in the encoding.
-            </t>
-            <t hangText='label'>
-              The value to be used to identify this algorithm.
-              Key map labels MUST be unique.
-              The label can be a positive integer, a negative integer or a string.
-              Integer values between 0 and 255 and strings of length 1 are designated as Standards Track Document required.
-              Integer values from 256 to 65535 and strings of length 2 are designated as Specification Required.
-              Integer values of greater than 65535 and strings of length greater than 2 are designated as first come first server.
-              Integer values in the range -1 to -65536 are used for key parameters specific to a single algorithm delegated to the “COSE Key Parameter Label” registry.
-              Integer values beyond -65536 are marked as private use.
-            </t>
-            <t hangText='CBOR Type'>
-              This field contains the CBOR type for the field
-            </t>
-            <t hangText='registry'>
-              This field denotes the registry that values come from, if one exists.
-            </t>
-            <t hangText='description'>
-              This field contains a brief description for the field
-            </t>
-            <t hangText='specification'>
-              This contains a pointer to the public specification for the field if one exists
-            </t>
-          </list>
-        </t>
-
-        <t>
-          This registry will be initially populated by the values in <xref target="COSE_KEY_KEYS"/>.
-          The specification column for all of these entries will be this document.
+          There are currently no registration tasks inthis section.
         </t>
 
       </section>
@@ -2170,6 +2074,7 @@ COSE_KDF_Context = [
       &RFC7539;
       
       &CFRG-EC;
+      &COSE;
 
       <reference anchor="AES-GCM" >
         <front>
