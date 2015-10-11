@@ -1,21 +1,7 @@
-# COSE (CBOR Encoded Message Syntax) Algorithm Supplimentary Draft
-
-This is the working area for the expected IETF COSE draft of other algorithms and header paramters
-
-* [Editor's copy](https://cose-wg.github.io/cose-algs/)
-* [Working Group Draft] (https://tools.ietf.org/html/draft-ietf-cose-algs)
-* [Compare Working Group and Editor's Drafts] (https://tools.ietf.org/rfcdiff?url1=https://www.ietf.org/id/draft-ietf-cose-algs&url2=https://cose-wg.github.io/cose-spec/draft-ietf-cose-algs.txt)
-
-## Document Status
-
-This document is under active developement.
-
-Current list of open issues can be found at [cose-wg/cose-issues](https://github.com/cose-wg/cose-issues).
-
-## Contributing
+# Contributing
 
 Before submitting feedback, please familiarize yourself with our current issues
-list and review the [COSE Working Group](https://datatracker.ietf.org/wg/cose/charter/). If you're
+list and review the [working group home page](|WG-HOMEPAGE|) (when and if we get one). If you're
 new to this, you may also want to read the [Tao of the
 IETF](https://www.ietf.org/tao.html).
 
@@ -23,7 +9,8 @@ Be aware that all contributions to the specification fall under the "NOTE WELL"
 terms outlined below.
 
 1. The best way to provide feedback (editorial or design) and ask questions is
-sending an e-mail to cose@ietf.org (https://www.ietf.org/mailman/listinfo/COSE). This will ensure that
+sending an e-mail to [our mailing
+list](https://www.ietf.org/mailman/listinfo/|WG-NAME|) (when and if we get one). This will ensure that
 the entire Working Group sees your input in a timely fashion.
 
 2. If you have **editorial** suggestions (i.e., those that do not change the
@@ -31,12 +18,11 @@ meaning of the specification), you can either:
 
   a) Fork this repository and submit a pull request; this is the lowest
   friction way to get editorial changes in.
-
+  
   b) Submit a new issue to Github, and mention that you believe it is editorial
   in the issue body. It is not necessary to notify the mailing list for
-  editorial issues.  The correct Github issue tracker is at
-  [cose-wg/cose-issues](https://github.com/cose-wg/cose-issues).
-
+  editorial issues.
+  
   c) Make comments on individual commits in Github. Note that this feedback is
   processed only with best effort by the editors, so it should only be used for
   quick editorial suggestions or questions.
@@ -47,19 +33,6 @@ providing a link to the issue in the message body.
 
   Note that **github issues are not for substantial discussions**; the only
   appropriate place to discuss design issues is on the mailing list itself.
-
-
-## Building the Draft
-
-In order to build a copy of the draft, you will need to install xml2rfc.  This
-requires Python 2.7 and can be installed using `pip`:
-
-```sh
-$ pip install xml2rfc
-```
-
-Other tools can be used to produce PDF files, or to provide a comparison.  These
-tools - and where to find them - are described in the `Makefile`.
 
 
 ## NOTE WELL
@@ -73,22 +46,22 @@ are addressed to:
 
  * The IETF plenary session
  * The IESG, or any member thereof on behalf of the IESG
- * Any IETF mailing list, including the IETF list itself, any working group
+ * Any IETF mailing list, including the IETF list itself, any working group 
    or design team list, or any other list functioning under IETF auspices
  * Any IETF working group or portion thereof
  * Any Birds of a Feather (BOF) session
  * The IAB or any member thereof on behalf of the IAB
  * The RFC Editor or the Internet-Drafts function
- * All IETF Contributions are subject to the rules of
-   [RFC 5378](https://tools.ietf.org/html/rfc5378) and
-   [RFC 3979](https://tools.ietf.org/html/rfc3979)
+ * All IETF Contributions are subject to the rules of 
+   [RFC 5378](https://tools.ietf.org/html/rfc5378) and 
+   [RFC 3979](https://tools.ietf.org/html/rfc3979) 
    (updated by [RFC 4879](https://tools.ietf.org/html/rfc4879)).
 
 Statements made outside of an IETF session, mailing list or other function,
 that are clearly not intended to be input to an IETF activity, group or
 function, are not IETF Contributions in the context of this notice.
 
-Please consult [RFC 5378](https://tools.ietf.org/html/rfc5378) and [RFC
+Please consult [RFC 5378](https://tools.ietf.org/html/rfc5378) and [RFC 
 3979](https://tools.ietf.org/html/rfc3979) for details.
 
 A participant in any IETF activity is deemed to accept all IETF rules of
