@@ -240,9 +240,9 @@ valid, message content = Verification(message sent, key, signature)
           <ttcol>hash</ttcol>
           <ttcol>salt length</ttcol>
           <ttcol align='left'>description</ttcol>
-          <c>PS256</c>        <c>-26</c>      <c>SHA-256</c>    <c>32</c>       <c>RSASSA-PSS w/ SHA-256</c>
-          <c>PS384</c>        <c>-27</c>      <c>SHA-384</c>    <c>48</c>       <c>RSASSA-PSS w/ SHA-384</c>
-          <c>PS512</c>        <c>-28</c>      <c>SHA-512</c>    <c>64</c>       <c>RSASSA-PSS w/ SHA-512</c>
+          <c>PS256</c>        <c>-8</c>      <c>SHA-256</c>    <c>32</c>       <c>RSASSA-PSS w/ SHA-256</c>
+          <c>PS384</c>        <c>-37</c>      <c>SHA-384</c>    <c>48</c>       <c>RSASSA-PSS w/ SHA-384</c>
+          <c>PS512</c>        <c>-38</c>      <c>SHA-512</c>    <c>64</c>       <c>RSASSA-PSS w/ SHA-512</c>
         </texttable>
 
         <section title="Security Considerations" anchor="RSASSA-PSS-considerations">
