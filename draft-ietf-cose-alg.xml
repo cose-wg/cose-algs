@@ -33,7 +33,6 @@
   <!ENTITY COSE SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-cose-msg.xml" >
   <!ENTITY CBCMAC SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.mcgrew-aead-aes-cbc-hmac-sha2.xml" >
   <!ENTITY CFRG-EC SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.irtf-cfrg-curves.xml" >
-  <!ENTITY CFRG-ECDSA SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.irtf-cfrg-eddsa.xml" >
 
 ]>
 
@@ -44,7 +43,7 @@
 
 <rfc ipr="trust200902" docName="draft-schaad-cose-alg-latest" category="info">
   <front>
-    <title>CBOR Encoded Message Syntax: Additional Algorithms</title>
+    <title abbrev="COSE Algorithms">CBOR Encoded Message Syntax: Additional Algorithms</title>
 
     <author initials="J." surname="Schaad" fullname="Jim Schaad">
       <organization>August Cellars</organization>
@@ -173,7 +172,7 @@ start = COSE_Untagged_Message / COSE_Tagged_Message / COSE_Key / COSE_KeySet
     
     <section title="Signature Algorithms">
       <t>
-        This document defines two new signature algorithms: RSA-PSS  and Edwards Curve Digital Signature Algorithm (EdDSA).
+        This document defines one new signature algorithm: RSA-PSS.
         Both of these signature algorithms are Signature Scheme with Appendix algorithms.
         (For a discussion on the difference between signature scheme with appendix and signature scheme with message recovery algorithms, see <xref target="I-D.ietf-cose-msg"/>.)
       </t>
@@ -229,49 +228,6 @@ start = COSE_Untagged_Message / COSE_Tagged_Message / COSE_Key / COSE_KeySet
             This is highly unlikely.
           </t>
         </section>
-      </section>
-
-      <section title="Edwards-curve Digital Signature Algorithms (EdDSA)">
-        <t>
-          
-          <xref target="I-D.irtf-cfrg-eddsa"/> describes the elliptic curve signature scheme Edwards-curve Digital Signature Algorithm (EdDSA).
-          In that document, the signature algorithm is instantiated using parameters for edwards25519 and edwards448 curves.
-          The document additionally describes two variants of the EdDSA algorithm:
-          Pure EdDSA, where no hash function is applied to the content before signing and, HashEdDSA where a hash function is applied to the content before signing and the result of that hash function is signed.
-          For use with COSE, on the pure EdDSA version is used.
-          This is because it is not expected that extremely large contents are going to be needed and, based on the arrangement of the message structure, the entire message is going to need to be held in memory in order to create or verify a signature.
-          Thus, the use of an incremental update process would not be useful.
-          Applications can provide the same features by defining the content of the message as a hash value and transporting the COSE message and the content as separate items.
-        </t>
-
-        <t>
-          The algorithms defined in this document can be found in <xref target="table-eddsa-algs"/>.
-          A single signature algorithm is defined which can be used for multiple curves.
-        </t>
-        
-        <texttable anchor="table-eddsa-algs" title="EdDSA Algorithm Values">
-          <ttcol align='left'>name</ttcol>
-          <ttcol align='left'>value</ttcol>
-          <ttcol align='left'>description</ttcol>
-          <c>EdDSA</c>        <c>*</c>        <c>EdDSA</c>
-        </texttable>
-
-        <t>
-          <xref target="I-D.irtf-cfrg-eddsa"/> describes the method of encoding the signature value.
-        </t>
-
-        <t>
-          When using a COSE key for this algorithm the following checks are made:
-
-          <list style="symbols">
-            <t> The 'kty' field MUST be present and it MUST be 'OKP'.</t>
-            <t>The 'crv' field MUST be present, and it MUST be a curve defined for this signature algorithm.</t>
-            <t>If the 'alg' field is present, it MUST match 'EdDSA'.</t>
-            <t>If the 'key_ops' field is present, it MUST include 'sign' when creating an EdDSA signature.</t>
-            <t>If the 'key_ops' field is present, it MUST include 'verify' when verifying an EdDSA signature.</t>
-          </list>
-        </t>
-
       </section>
 
     </section>
@@ -727,7 +683,6 @@ start = COSE_Untagged_Message / COSE_Tagged_Message / COSE_Key / COSE_KeySet
       &RFC7539;
       
       &CFRG-EC;
-      &CFRG-ECDSA;
       &COSE;
 
       <reference anchor="AES-GCM" >
