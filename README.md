@@ -8,7 +8,10 @@ This is the working area for the expected IETF COSE draft of other algorithms an
 
 ## Document Status
 
-This document is under active developement.
+This document is not currently under development. It will be revived when and if there are additional algorithms that need to be created.  If you have a need for a new algorithm that you would like to see added here do the following:
+
+1. Send mail to the cose@ietf.org mailing list.
+2. Create an issue in the project https://github.com/cose-wg/cose-issues so that it can be tracked.
 
 Current list of open issues can be found at [cose-wg/cose-issues](https://github.com/cose-wg/cose-issues).
 
