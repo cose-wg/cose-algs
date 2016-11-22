@@ -4,8 +4,8 @@
 
 COSE Working Group                                             J. Schaad
 Internet-Draft                                            August Cellars
-Intended status: Informational                            March 21, 2016
-Expires: September 22, 2016
+Intended status: Informational                         November 22, 2016
+Expires: May 26, 2017
 
 
            CBOR Encoded Message Syntax: Additional Algorithms
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 22, 2016.
+   This Internet-Draft will expire on May 26, 2017.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Schaad                 Expires September 22, 2016               [Page 1]
+Schaad                    Expires May 26, 2017                  [Page 1]
 
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
+Internet-Draft               COSE Algorithms               November 2016
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -70,54 +70,50 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Requirements Terminology  . . . . . . . . . . . . . . . .   3
      1.2.  Document Terminology  . . . . . . . . . . . . . . . . . .   3
    2.  Signature Algorithms  . . . . . . . . . . . . . . . . . . . .   3
      2.1.  RSASSA-PSS  . . . . . . . . . . . . . . . . . . . . . . .   3
        2.1.1.  Security Considerations . . . . . . . . . . . . . . .   4
-     2.2.  Edwards-curve Digital Signature Algorithms (EdDSA)  . . .   4
-   3.  Message Authentication (MAC) Algorithms . . . . . . . . . . .   6
-   4.  Content Encryption Algorithms . . . . . . . . . . . . . . . .   6
-   5.  Key Derivation Functions (KDF)  . . . . . . . . . . . . . . .   6
-   6.  Recipient Algorithms  . . . . . . . . . . . . . . . . . . . .   6
-     6.1.  RSAES-OAEP  . . . . . . . . . . . . . . . . . . . . . . .   6
-       6.1.1.  Security Considerations for RSAES-OAEP  . . . . . . .   6
-     6.2.  ECDH  . . . . . . . . . . . . . . . . . . . . . . . . . .   7
-   7.  Keys  . . . . . . . . . . . . . . . . . . . . . . . . . . . .   7
-     7.1.  Octet Key Pair  . . . . . . . . . . . . . . . . . . . . .   8
-     7.2.  RSA Keys  . . . . . . . . . . . . . . . . . . . . . . . .   9
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  10
-     8.1.  COSE Header Parameter Registry  . . . . . . . . . . . . .  10
-     8.2.  COSE Header Algorithm Label Table . . . . . . . . . . . .  11
-     8.3.  COSE Algorithm Registry . . . . . . . . . . . . . . . . .  11
-     8.4.  COSE Key Common Parameter Registry  . . . . . . . . . . .  11
-     8.5.  COSE Key Type Parameter Registry  . . . . . . . . . . . .  11
-     8.6.  COSE Elliptic Curve Registry  . . . . . . . . . . . . . .  11
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  12
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  13
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  13
-   Appendix A.  Document Updates . . . . . . . . . . . . . . . . . .  16
-     A.1.  Version -00 . . . . . . . . . . . . . . . . . . . . . . .  16
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  17
-
-
-
-
-
-
-
-
-Schaad                 Expires September 22, 2016               [Page 2]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
+   3.  Message Authentication (MAC) Algorithms . . . . . . . . . . .   4
+   4.  Content Encryption Algorithms . . . . . . . . . . . . . . . .   4
+   5.  Key Derivation Functions (KDF)  . . . . . . . . . . . . . . .   5
+   6.  Recipient Algorithms  . . . . . . . . . . . . . . . . . . . .   5
+     6.1.  RSAES-OAEP  . . . . . . . . . . . . . . . . . . . . . . .   5
+       6.1.1.  Security Considerations for RSAES-OAEP  . . . . . . .   5
+     6.2.  ECDH  . . . . . . . . . . . . . . . . . . . . . . . . . .   6
+   7.  Keys  . . . . . . . . . . . . . . . . . . . . . . . . . . . .   6
+     7.1.  Octet Key Pair  . . . . . . . . . . . . . . . . . . . . .   7
+     7.2.  RSA Keys  . . . . . . . . . . . . . . . . . . . . . . . .   8
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
+     8.1.  COSE Header Parameter Registry  . . . . . . . . . . . . .   9
+     8.2.  COSE Header Algorithm Label Table . . . . . . . . . . . .   9
+     8.3.  COSE Algorithm Registry . . . . . . . . . . . . . . . . .   9
+     8.4.  COSE Key Common Parameter Registry  . . . . . . . . . . .  10
+     8.5.  COSE Key Type Parameter Registry  . . . . . . . . . . . .  10
+     8.6.  COSE Elliptic Curve Registry  . . . . . . . . . . . . . .  10
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .  11
+     10.2.  Informative References . . . . . . . . . . . . . . . . .  12
+   Appendix A.  Document Updates . . . . . . . . . . . . . . . . . .  15
+     A.1.  Version -00 . . . . . . . . . . . . . . . . . . . . . . .  15
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  15
 
 1.  Introduction
 
    In the process of writing RFCXXXX [I-D.ietf-cose-msg] several
    algorithms were removed from that document to be addressed at a later
+
+
+
+
+Schaad                    Expires May 26, 2017                  [Page 2]
+
+Internet-Draft               COSE Algorithms               November 2016
+
+
    date.  This document deals with a large set of the cryptographic
    algorithms which were removed at that time.
 
@@ -142,12 +138,11 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
 
 2.  Signature Algorithms
 
-   This document defines two new signature algorithms: RSA-PSS and
-   Edwards Curve Digital Signature Algorithm (EdDSA).  Both of these
-   signature algorithms are Signature Scheme with Appendix algorithms.
-   (For a discussion on the difference between signature scheme with
-   appendix and signature scheme with message recovery algorithms, see
-   [I-D.ietf-cose-msg].)
+   This document defines one new signature algorithm: RSA-PSS.  Both of
+   these signature algorithms are Signature Scheme with
+   Appendix algorithms.  (For a discussion on the difference between
+   signature scheme with appendix and signature scheme with message
+   recovery algorithms, see [I-D.ietf-cose-msg].)
 
 2.1.  RSASSA-PSS
 
@@ -162,18 +157,18 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    this recommendation.  The salt length is the same length as the hash
    function output.
 
-
-
-
-Schaad                 Expires September 22, 2016               [Page 3]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
    Implementations need to check that the key type is 'RSA' when
    creating or verifying a signature.
 
    The algorithms defined in this document can be found in Table 1.
+
+
+
+
+Schaad                    Expires May 26, 2017                  [Page 3]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
      +-------+-------+---------+-------------+-----------------------+
      | name  | value | hash    | salt length | description           |
@@ -212,76 +207,6 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    in producing a forgery based on changing the hash function.  This is
    highly unlikely.
 
-2.2.  Edwards-curve Digital Signature Algorithms (EdDSA)
-
-   [I-D.irtf-cfrg-eddsa] describes the elliptic curve signature scheme
-   Edwards-curve Digital Signature Algorithm (EdDSA).  In that document,
-   the signature algorithm is instantiated using parameters for
-   edwards25519 and edwards448 curves.  The document additionally
-
-
-
-Schaad                 Expires September 22, 2016               [Page 4]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
-   describes two variants of the EdDSA algorithm: Pure EdDSA, where no
-   hash function is applied to the content before signing and, HashEdDSA
-   where a hash function is applied to the content before signing and
-   the result of that hash function is signed.  For use with COSE, on
-   the pure EdDSA version is used.  This is because it is not expected
-   that extremely large contents are going to be needed and, based on
-   the arrangement of the message structure, the entire message is going
-   to need to be held in memory in order to create or verify a
-   signature.  Thus, the use of an incremental update process would not
-   be useful.  Applications can provide the same features by defining
-   the content of the message as a hash value and transporting the COSE
-   message and the content as separate items.
-
-   The algorithms defined in this document can be found in Table 2.  A
-   single signature algorithm is defined which can be used for multiple
-   curves.
-
-                      +-------+-------+-------------+
-                      | name  | value | description |
-                      +-------+-------+-------------+
-                      | EdDSA | *     | EdDSA       |
-                      +-------+-------+-------------+
-
-                      Table 2: EdDSA Algorithm Values
-
-   [I-D.irtf-cfrg-eddsa] describes the method of encoding the signature
-   value.
-
-   When using a COSE key for this algorithm the following checks are
-   made:
-
-   o  The 'kty' field MUST be present and it MUST be 'OKP'.
-
-   o  The 'crv' field MUST be present, and it MUST be a curve defined
-      for this signature algorithm.
-
-   o  If the 'alg' field is present, it MUST match 'EdDSA'.
-
-   o  If the 'key_ops' field is present, it MUST include 'sign' when
-      creating an EdDSA signature.
-
-   o  If the 'key_ops' field is present, it MUST include 'verify' when
-      verifying an EdDSA signature.
-
-
-
-
-
-
-
-
-Schaad                 Expires September 22, 2016               [Page 5]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
 3.  Message Authentication (MAC) Algorithms
 
    This document defines no new Message Authentication Code algorithms.
@@ -289,6 +214,17 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
 4.  Content Encryption Algorithms
 
    This document defines no new content inception algorithms.
+
+
+
+
+
+
+
+Schaad                    Expires May 26, 2017                  [Page 4]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
 5.  Key Derivation Functions (KDF)
 
@@ -309,7 +245,7 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
 
    o  P is always set to the empty octet string.
 
-   Table 3 summarizes the rest of the values.
+   Table 2 summarizes the rest of the values.
 
     +----------------------+-------+---------+-----------------------+
     | name                 | value | hash    | description           |
@@ -319,7 +255,7 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
     | RSAES-OAEP w/SHA-512 | -26   | SHA-512 | RSAES OAEP w/ SHA-512 |
     +----------------------+-------+---------+-----------------------+
 
-                   Table 3: RSAES-OAEP Algorithm Values
+                   Table 2: RSAES-OAEP Algorithm Values
 
    The key type MUST be 'RSA'.
 
@@ -329,15 +265,6 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    This key size corresponds roughly to the same strength as provided by
    a 128-bit symmetric encryption algorithm.
 
-
-
-
-
-Schaad                 Expires September 22, 2016               [Page 6]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
    It is highly recommended that checks on the key length be done before
    starting a decryption operation.  One potential denial of service
    operation is to provide encrypted objects using either abnormally
@@ -345,6 +272,15 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    able to encrypt and decrypt with modulus between 2048 and 16K bits in
    length.  Applications can impose additional restrictions on the
    length of the modulus.
+
+
+
+
+
+Schaad                    Expires May 26, 2017                  [Page 5]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
 6.2.  ECDH
 
@@ -381,19 +317,6 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    Key types are identified by the 'kty' member of the COSE_Key object.
    In this document we define four values for the member.
 
-
-
-
-
-
-
-
-
-Schaad                 Expires September 22, 2016               [Page 7]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
                     +------+--------+----------------+
                     | name | value  | description    |
                     +------+--------+----------------+
@@ -402,7 +325,18 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
                     | RSA  | TBDXX1 | RSA Keys       |
                     +------+--------+----------------+
 
-                         Table 4: Key Type Values
+                         Table 3: Key Type Values
+
+
+
+
+
+
+
+Schaad                    Expires May 26, 2017                  [Page 6]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
 7.1.  Octet Key Pair
 
@@ -411,12 +345,12 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    be used for other curve types (for example mathematics based on
    hyper-elliptic surfaces).
 
-   The key parameters defined in this section are summarized in Table 5.
+   The key parameters defined in this section are summarized in Table 4.
    The members that are defined for this key type are:
 
    crv  contains an identifier of the curve to be used with the key.
       [CREF2] The curves defined in this document for this key type can
-      be found in Table 6.  Other curves may be registered in the future
+      be found in Table 5.  Other curves may be registered in the future
       and private curves can be used as well.
 
    x  contains the x coordinate for the EC point.  The octet string
@@ -430,26 +364,6 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    'x' also be present, but it can be recomputed from the required
    elements and omitting it saves on space.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Schaad                 Expires September 22, 2016               [Page 8]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
    +------+-------+-------+--------+-----------------------------------+
    | name | key   | value | type   | description                       |
    |      | type  |       |        |                                   |
@@ -462,7 +376,23 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    | d    | 1     | -4    | bstr   | Private key                       |
    +------+-------+-------+--------+-----------------------------------+
 
-                        Table 5: EC Key Parameters
+                        Table 4: EC Key Parameters
+
+
+
+
+
+
+
+
+
+
+
+
+Schaad                    Expires May 26, 2017                  [Page 7]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
              +------------+----------+--------+-------------+
              | name       | key type | value  | description |
@@ -472,7 +402,7 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
              | Curve448   | EC1      | TBDYY2 | Curve 448   |
              +------------+----------+--------+-------------+
 
-                            Table 6: EC Curves
+                            Table 5: EC Curves
 
 7.2.  RSA Keys
 
@@ -489,22 +419,14 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
 
    This document follows the naming convention of [RFC3447] for the
    naming of the fields of an RSA public or private key.  The table
-   Table 7 provides a summary of the label values and the types
+   Table 6 provides a summary of the label values and the types
    associated with each of those labels.  The requirements for fields
    for RSA keys are as follows:
 
    o  For all keys, 'kty' MUST be present and MUST have a value of 3.
 
    o  For public keys, the fields 'n' and 'e' MUST be present.  All
-      other fields defined in Table 7 MUST be absent.
-
-
-
-
-Schaad                 Expires September 22, 2016               [Page 9]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
+      other fields defined in Table 6 MUST be absent.
 
    o  For private keys with two primes, the fields 'other', 'r_i', 'd_i'
       and 't_i' MUST be absent, all other fields MUST be present.
@@ -513,6 +435,20 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
       present.  For the third to nth primes, each of the primes is
       represented as a map containing the fields 'r_i', 'd_i' and 't_i'.
       The field 'other' is an array of those maps.
+
+
+
+
+
+
+
+
+
+
+Schaad                    Expires May 26, 2017                  [Page 8]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
    +-------+----------+-------+-------+--------------------------------+
    | name  | key type | value | type  | description                    |
@@ -544,23 +480,13 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    |       |          |       |       | Coefficient                    |
    +-------+----------+-------+-------+--------------------------------+
 
-                        Table 7: RSA Key Parameters
+                        Table 6: RSA Key Parameters
 
 8.  IANA Considerations
 
 8.1.  COSE Header Parameter Registry
 
    There are currently no registration requests here
-
-
-
-
-
-
-Schaad                 Expires September 22, 2016              [Page 10]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
 
 8.2.  COSE Header Algorithm Label Table
 
@@ -569,6 +495,16 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
 8.3.  COSE Algorithm Registry
 
    TBD
+
+
+
+
+
+
+Schaad                    Expires May 26, 2017                  [Page 9]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
 8.4.  COSE Key Common Parameter Registry
 
@@ -599,8 +535,8 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    specification  This contains a pointer to the public specification
       for the field if one exists
 
-   This registry will be initially populated by the values in Table 5,
-   and Table 7.  The specification column for all of these entries will
+   This registry will be initially populated by the values in Table 4,
+   and Table 6.  The specification column for all of these entries will
    be this document.
 
 8.6.  COSE Elliptic Curve Registry
@@ -610,14 +546,6 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
 
    The columns of the table are:
 
-
-
-
-Schaad                 Expires September 22, 2016              [Page 11]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
    name  This is a descriptive name that enables easier reference to the
       item.  It is not used in the encoding.
 
@@ -626,6 +554,14 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
       designated as Standards Track Document Required.  The the integer
       values from 256 to 65535 and -65536 to -257 are designated as
       Specification Required.  Integer values over 65535 are designated
+
+
+
+Schaad                    Expires May 26, 2017                 [Page 10]
+
+Internet-Draft               COSE Algorithms               November 2016
+
+
       as first come first serve.  Integer values less than -65536 are
       marked as private use.
 
@@ -637,7 +573,7 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    specification  This contains a pointer to the public specification
       for the curve if one exists.
 
-   This registry will be initially populated by the values in Table 4.
+   This registry will be initially populated by the values in Table 3.
    The specification column for all of these entries will be this
    document.
 
@@ -663,17 +599,6 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
        included in the trust decision as well as the other key fields.
        3) that the algorithm be included in the trust decision.
 
-
-
-
-
-
-
-Schaad                 Expires September 22, 2016              [Page 12]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
 10.  References
 
 10.1.  Normative References
@@ -682,6 +607,16 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <http://www.rfc-editor.org/info/rfc2119>.
+
+
+
+
+
+
+Schaad                    Expires May 26, 2017                 [Page 11]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
@@ -699,22 +634,17 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    [I-D.greevenbosch-appsawg-cbor-cddl]
               Vigano, C. and H. Birkholz, "CBOR data definition language
               (CDDL): a notational convention to express CBOR data
-              structures", draft-greevenbosch-appsawg-cbor-cddl-08 (work
-              in progress), March 2016.
+              structures", draft-greevenbosch-appsawg-cbor-cddl-09 (work
+              in progress), September 2016.
 
    [I-D.ietf-cose-msg]
-              Schaad, J., "CBOR Encoded Message Syntax", draft-ietf-
-              cose-msg-10 (work in progress), February 2016.
+              Schaad, J., "CBOR Object Signing and Encryption (COSE)",
+              draft-ietf-cose-msg-23 (work in progress), October 2016.
 
    [I-D.irtf-cfrg-curves]
               Langley, A. and M. Hamburg, "Elliptic Curves for
               Security", draft-irtf-cfrg-curves-11 (work in progress),
               October 2015.
-
-   [I-D.irtf-cfrg-eddsa]
-              Josefsson, S. and I. Liusvaara, "Edwards-curve Digital
-              Signature Algorithm (EdDSA)", draft-irtf-cfrg-eddsa-05
-              (work in progress), March 2016.
 
    [MAC]      NiST, N., "FIPS PUB 113: Computer Data Authentication",
               May 1985.
@@ -722,13 +652,6 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    [MultiPrimeRSA]
               Hinek, M. and D. Cheriton, "On the Security of Multi-prime
               RSA", June 2006.
-
-
-
-Schaad                 Expires September 22, 2016              [Page 13]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
 
    [PVSig]    Brown, D. and D. Johnson, "Formal Security Proofs for a
               Signature Scheme with Partial Message Recover", February
@@ -742,6 +665,14 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    [RFC2633]  Ramsdell, B., Ed., "S/MIME Version 3 Message
               Specification", RFC 2633, DOI 10.17487/RFC2633, June 1999,
               <http://www.rfc-editor.org/info/rfc2633>.
+
+
+
+
+Schaad                    Expires May 26, 2017                 [Page 12]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
    [RFC2898]  Kaliski, B., "PKCS #5: Password-Based Cryptography
               Specification Version 2.0", RFC 2898,
@@ -776,16 +707,6 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
               Information", RFC 5480, DOI 10.17487/RFC5480, March 2009,
               <http://www.rfc-editor.org/info/rfc5480>.
 
-
-
-
-
-
-Schaad                 Expires September 22, 2016              [Page 14]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
    [RFC5652]  Housley, R., "Cryptographic Message Syntax (CMS)", STD 70,
               RFC 5652, DOI 10.17487/RFC5652, September 2009,
               <http://www.rfc-editor.org/info/rfc5652>.
@@ -799,6 +720,15 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
               Cryptographic Message Syntax (CMS)", RFC 5752,
               DOI 10.17487/RFC5752, January 2010,
               <http://www.rfc-editor.org/info/rfc5752>.
+
+
+
+
+
+Schaad                    Expires May 26, 2017                 [Page 13]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
    [RFC5869]  Krawczyk, H. and P. Eronen, "HMAC-based Extract-and-Expand
               Key Derivation Function (HKDF)", RFC 5869,
@@ -835,13 +765,6 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
               DOI 10.17487/RFC7252, June 2014,
               <http://www.rfc-editor.org/info/rfc7252>.
 
-
-
-Schaad                 Expires September 22, 2016              [Page 15]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
    [RFC7515]  Jones, M., Bradley, J., and N. Sakimura, "JSON Web
               Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May
               2015, <http://www.rfc-editor.org/info/rfc7515>.
@@ -853,6 +776,15 @@ Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
    [RFC7517]  Jones, M., "JSON Web Key (JWK)", RFC 7517,
               DOI 10.17487/RFC7517, May 2015,
               <http://www.rfc-editor.org/info/rfc7517>.
+
+
+
+
+
+Schaad                    Expires May 26, 2017                 [Page 14]
+
+Internet-Draft               COSE Algorithms               November 2016
+
 
    [RFC7518]  Jones, M., "JSON Web Algorithms (JWA)", RFC 7518,
               DOI 10.17487/RFC7518, May 2015,
@@ -890,14 +822,6 @@ Editorial Comments
         big numbers rather than as binary strings.  This means that we
         would use the tag 6.2 instead.  From my reading of the
         specification, there is no difference in the encoded size of the
-
-
-
-Schaad                 Expires September 22, 2016              [Page 16]
-
-Internet-DraCBOR Encoded Message Syntax: Additional Algorith  March 2016
-
-
         resulting output.  The specification of bignum does explicitly
         allow for integers encoded with leading zeros.
 
@@ -913,40 +837,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Schaad                 Expires September 22, 2016              [Page 17]
+Schaad                    Expires May 26, 2017                 [Page 15]
